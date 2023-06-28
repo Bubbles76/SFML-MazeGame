@@ -10,7 +10,7 @@ int main()
 	//vector array
 	std::vector<Cell> Grid;
 	
-	std::vector<bool> visitedCell = { false};
+	//std::vector<bool> visitedCell = { false};
 
 
 	// for every row go through every column  
@@ -36,11 +36,12 @@ int main()
 	//while loop to keep window open
 	while (window.isOpen())
 	{
-
+		// create event
 		sf::Event evnt;
 		while (window.pollEvent(evnt))
 		{
 			if (evnt.type == sf::Event::Closed)
+
 				window.close();
 		}
 
@@ -48,12 +49,14 @@ int main()
 
 		for (int i = 0; i < Grid.size(); i++)
 		{
+			//draw out set gridded lines 
 			Grid[i].draw(window);
-
-			Grid[0].visitedCell = true;
+			
+			// set grid cell(top left) Visited cell to true to test 
+			Grid[0].visitedCell = {true};
 		
 		}
-
+ 
 		window.display();
 	}
 

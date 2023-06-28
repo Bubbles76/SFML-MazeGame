@@ -10,17 +10,17 @@ int height()
 {
 	return 400;
 }
-//set size of each cell
+//set size of each cell within the maze
 int cellWidthHeight()
 {
 	return 40;
 }
-//set columns
+//calculate and set column sizes
 int columns()
 {
 	return floor(width() / cellWidthHeight());
 }
-// set rows
+// calculate and set row sizes
 int rows()
 {
 	return floor(height() / cellWidthHeight());

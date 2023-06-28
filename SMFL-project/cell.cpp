@@ -7,23 +7,16 @@
 void Cell::draw(sf::RenderWindow& showWindow)
 {
 	int i = this->X * cellWidthHeight();
-
 	int j = this->Y * cellWidthHeight();
 
+	Cell::walls;
+	Cell::visitedCell;
 	
-	// bool array top, right,bottom,left, NESW 
-	std::vector<bool> walls = { true,true,true,true };
-
-	//std::vector<bool> visitedCell = { false };
-	
-	
-
 	sf::VertexArray lines(sf::Lines, 8);
-
 
 	if (walls[0])
 	{
-		// clockwise NESW
+		// clockwise N,E,S,W 
 		//top left corner
 		lines[0].position = sf::Vector2f(i, j);
 		lines[1].position = sf::Vector2f(i + cellWidthHeight(), j);
@@ -50,12 +43,18 @@ void Cell::draw(sf::RenderWindow& showWindow)
 		lines[7].position = sf::Vector2f(i, j);
 	}
 
-	if (visitedCell == true)
+	//visited cell too equal true 
+	if (visitedCell[0] == true)
 	{
+		// SFML function class  to  (position, rotation, scale, outline, colour, texture)
 		sf::RectangleShape Rect;
+		//outline cell
 		Rect.setOutlineThickness(0);
+		//set the size of cell
 		Rect.setSize(sf::Vector2f(cellWidthHeight(), cellWidthHeight()));
+		//set and fill the colour of the cell
 		Rect.setFillColor(sf::Color(255, 0, 255, 100));
+		//set the position of the rectangle 
 		Rect.setPosition(i, j);
 
 		showWindow.draw(Rect);
