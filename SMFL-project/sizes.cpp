@@ -29,8 +29,8 @@ int rows()
 //
 int index(int x, int y)
 {
-	x;// columns
-	y;// rows
+	x;// rows
+	y;// columns
 
 	return x + y;
 }

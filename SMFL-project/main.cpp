@@ -13,10 +13,10 @@ int main()
 	//std::vector<bool> visitedCell = { false};
 
 
-	// for every row go through every column  
-	for (int Y = 0; Y < rows(); Y++)
+	// for every row go through every column and create cells  
+	for (int X = 0; X < rows(); X++)
 	{
-		for (int X = 0; X < columns(); X++)
+		for (int Y = 0; Y < columns(); Y++)
 		{
 			Cell* Cprt = new Cell(X, Y);
 			// push Cell x,y on to the stack
