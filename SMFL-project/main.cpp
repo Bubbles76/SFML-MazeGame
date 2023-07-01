@@ -1,37 +1,36 @@
 #include <SFML/Graphics.hpp>
 #include"sizes.h"
 #include"cell.h"
-
+#include <memory>
 #include<iostream>
+
+
 
 
 int main()
 {
-	//vector array
+	//vector array x and y 
 	std::vector<Cell> Grid;
-	
-	//std::vector<bool> visitedCell = { false};
 
-
-	// for every row go through every column and create cells  
+	// for every row go through every column and create each cell
 	for (int X = 0; X < rows(); X++)
 	{
 		for (int Y = 0; Y < columns(); Y++)
 		{
-			Cell* Cprt = new Cell(X, Y);
-			// push Cell x,y on to the stack
+			// smart pointer 
+			std::unique_ptr<Cell> Cprt (new Cell(X, Y));
+			// push Cell x,y on to the stack (insert elements at the end of the vector.)
 			Grid.push_back(Cell(X, Y));
 		}
 	}
 
+	//Cell Current = Grid[0];
 	
-	Cell Current = Grid[0];
-	
-
-	
-
 	// open a window set height() and width() "name on window" ;
 	sf::RenderWindow window(sf::VideoMode(height(), width()), "SFML");
+	
+
+
 
 	//while loop to keep window open
 	while (window.isOpen())
@@ -53,13 +52,15 @@ int main()
 			Grid[i].draw(window);
 			
 			// set grid cell(top left) Visited cell to true to test 
-			Grid[0].visitedCell = {true};
+			Grid[3].visitedCell = {true};
+			Cell CheckNeigborCells();
 		
 		}
  
 		window.display();
 	}
 
+	
 
 	return 0;
 }

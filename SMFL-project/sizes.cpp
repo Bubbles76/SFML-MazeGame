@@ -1,3 +1,4 @@
+#include"sizes.h"
 #include<cmath>
 
 //set width of window
@@ -32,5 +33,9 @@ int index(int x, int y)
 	x;// rows
 	y;// columns
 
-	return x + y;
+	if (x < 0 || y < 0 || x > columns() - 1 || y > rows() - 1)
+	{
+		return -1;
+	}
+	return x + y *columns();
 }

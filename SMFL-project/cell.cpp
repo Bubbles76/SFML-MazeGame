@@ -1,17 +1,18 @@
 #include <SFML/Graphics.hpp>
 #include"sizes.h"
 #include"cell.h"
+#include<iostream>
 
 #include<cmath>
 
 void Cell::draw(sf::RenderWindow& showWindow)
 {
-	int i = this->X * cellWidthHeight();
-	int j = this->Y * cellWidthHeight();
+	//int i = this->X * cellWidthHeight();
+	//int j = this->Y * cellWidthHeight();
 
 	Cell::walls;
 	Cell::visitedCell;
-	
+
 	sf::VertexArray lines(sf::Lines, 8);
 
 	if (walls[0])
@@ -31,14 +32,14 @@ void Cell::draw(sf::RenderWindow& showWindow)
 
 	if (walls[2])
 	{
-		//bottom left corner 
+		//bottom right corner 
 		lines[4].position = sf::Vector2f(i + cellWidthHeight(), j + cellWidthHeight());
 		lines[5].position = sf::Vector2f(i, j + cellWidthHeight());
 	}
 
 	if (walls[3])
 	{
-		//bottom right corner
+		//bottom left corner
 		lines[6].position = sf::Vector2f(i, j + cellWidthHeight());
 		lines[7].position = sf::Vector2f(i, j);
 	}
@@ -58,13 +59,49 @@ void Cell::draw(sf::RenderWindow& showWindow)
 		Rect.setPosition(i, j);
 
 		showWindow.draw(Rect);
-		
+
+
 	}
 
 	//prints out the cells
 	showWindow.draw(lines);
 
+}
+void Cell::CheckNeigborCells(std::vector<Cell>& Grid)
+{
+	std::vector<Cell> Neighbors;
+	
+	Cell top = Grid[index(i, j - 1)];
+
+	Cell right = Grid[index(i + 1, j)];
+
+	Cell bottom = Grid[index(i, j + 1)];
+
+	Cell left = Grid[index(i - 1, j)];
+
+
+
+	//if (top.real && !top.visitedCell)
+	//{
+	//	Neighbors.push_back(top);
+	//}
+
+	//if (right.real && !right.visitedCell)
+	//{
+	//	Neighbors.push_back(right);
+	//}
+
+	//if (bottom.real && !bottom.visitedCell)
+	//{
+	//	Neighbors.push_back(bottom);
+	//}
+
+	//if (left.real && !left.visitedCell)
+	//{
+	//	Neighbors.push_back(left);
+	//}
+
+
 
 }
-
 
