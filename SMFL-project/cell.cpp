@@ -3,19 +3,16 @@
 #include"cell.h"
 #include<iostream>
 
+#include<cstdlib>
+#include<ctime>
 #include<cmath>
 
-void Cell::draw(sf::RenderWindow& showWindow)
+void Cell::Draw(sf::RenderWindow& showWindow)
 {
-	//int i = this->X * cellWidthHeight();
-	//int j = this->Y * cellWidthHeight();
-
-	Cell::walls;
-	Cell::visitedCell;
-
 	sf::VertexArray lines(sf::Lines, 8);
 
-	if (walls[0])
+	// boolean array 
+	if (Walls[0])
 	{
 		// clockwise N,E,S,W 
 		//top left corner
@@ -23,29 +20,30 @@ void Cell::draw(sf::RenderWindow& showWindow)
 		lines[1].position = sf::Vector2f(i + cellWidthHeight(), j);
 	}
 
-	if (walls[1])
+	if (Walls[1])
 	{
 		//top right corner
 		lines[2].position = sf::Vector2f(i + cellWidthHeight(), j);
 		lines[3].position = sf::Vector2f(i + cellWidthHeight(), j + cellWidthHeight());
 	}
 
-	if (walls[2])
+	if (Walls[2])
 	{
 		//bottom right corner 
 		lines[4].position = sf::Vector2f(i + cellWidthHeight(), j + cellWidthHeight());
 		lines[5].position = sf::Vector2f(i, j + cellWidthHeight());
 	}
 
-	if (walls[3])
+	if (Walls[3])
 	{
 		//bottom left corner
 		lines[6].position = sf::Vector2f(i, j + cellWidthHeight());
 		lines[7].position = sf::Vector2f(i, j);
 	}
 
+
 	//visited cell too equal true 
-	if (visitedCell[0] == true)
+	if (VisitedCell)
 	{
 		// SFML function class  to  (position, rotation, scale, outline, colour, texture)
 		sf::RectangleShape Rect;
@@ -56,52 +54,60 @@ void Cell::draw(sf::RenderWindow& showWindow)
 		//set and fill the colour of the cell
 		Rect.setFillColor(sf::Color(255, 0, 255, 100));
 		//set the position of the rectangle 
-		Rect.setPosition(i, j);
+		Rect.setPosition(i,j);
 
+		//print the visited cell 
 		showWindow.draw(Rect);
-
+		
 
 	}
-
-	//prints out the cells
+	//prints out the Grid lines to create the cells
 	showWindow.draw(lines);
 
+
+
 }
-void Cell::CheckNeigborCells(std::vector<Cell>& Grid)
+
+Cell Cell::CheckNeigborCells(std::vector<Cell>& Grid)
 {
-	std::vector<Cell> Neighbors;
+	// location of neighboring cells
+	// above the main cell
+	Cell TopCell = Grid[index(i, j - 1)];
+	// right side of the main cell
+	Cell RightCell = Grid[index(i + 1, j)];
+	// below of the main cell
+	Cell BottomCell = Grid[index(i, j + 1)];
+	//left side of the main cell
+	Cell LeftCell = Grid[index(i - 1, j)];
+
+	// check that the cell location exists and if the cell has NOT been visited
+	if (TopCell.Available && !TopCell.VisitedCell)
+	{
+		// add cell to the neighbors array
+		Neighbors.push_back(TopCell);
+	}
+	if (RightCell.Available && !RightCell.VisitedCell)
+	{
+		Neighbors.push_back(RightCell);
+	}
+	if (BottomCell.Available && !BottomCell.VisitedCell)
+	{
+		Neighbors.push_back(BottomCell);
+	}
+	if (LeftCell.Available && !LeftCell.VisitedCell)
+	{
+		Neighbors.push_back(LeftCell);
+	}
+
 	
-	Cell top = Grid[index(i, j - 1)];
-
-	Cell right = Grid[index(i + 1, j)];
-
-	Cell bottom = Grid[index(i, j + 1)];
-
-	Cell left = Grid[index(i - 1, j)];
-
-
-
-	//if (top.real && !top.visitedCell)
-	//{
-	//	Neighbors.push_back(top);
-	//}
-
-	//if (right.real && !right.visitedCell)
-	//{
-	//	Neighbors.push_back(right);
-	//}
-
-	//if (bottom.real && !bottom.visitedCell)
-	//{
-	//	Neighbors.push_back(bottom);
-	//}
-
-	//if (left.real && !left.visitedCell)
-	//{
-	//	Neighbors.push_back(left);
-	//}
-
-
-
+	//neighbors array size being more then 0
+	if (Neighbors.size() > 0)
+	{
+		// create a random number to pick the neighboring cell
+		srand(time(NULL));
+		int RandomNumber = (rand() % Neighbors.size());
+		//return to random neighboring cell
+		return Neighbors[RandomNumber];
+	}
 }
 
