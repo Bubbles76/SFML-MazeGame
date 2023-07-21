@@ -23,19 +23,6 @@ int main()
 		}
 	}
 
-	/*
-	// for every column go through every row and create each cell
-	for (int Y = 0; Y < columns(); Y++)
-	{
-		for (int X = 0; X < rows(); X++)
-		{
-			// smart pointer 
-			std::unique_ptr<Cell> Cprt(new Cell(X, Y));
-			// push Cell x,y on to the stack (insert elements at the end of the vector.)
-			Grid.push_back(Cell(X, Y));
-		}
-	}
-	*/
 	// open a window set height() and width() "name on window" ;
 	sf::RenderWindow window(sf::VideoMode(height(), width()), "SFML");
 	
@@ -64,20 +51,20 @@ int main()
 		{
 			//draw out set gridded lines 
 			Grid[i].Draw(window);
-		
+		}
 			// set grid cell(top left) Visited cell to true to test 
 			CurrentCell.VisitedCell = { true };
 
 			Cell NextCell = CurrentCell;// .CheckNeigborCells(Grid);
-		}	 
-			/* 
+			 
+			
 
 			if (NextCell.VisitedCell)
 			{
 				NextCell.VisitedCell = true;
 				CurrentCell = NextCell;
 
-			}*/
+			}
 		
 		window.display();
 	}

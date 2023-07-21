@@ -39,7 +39,7 @@ int index(int x, int y)
 	// all the option are invalid 	
 	if (x < 0 || y < 0 || x > columns() - 1 || y > rows() - 1)
 	{
-		return -1;
+		return 0;
 	}
 	return x + y *columns();
 }
