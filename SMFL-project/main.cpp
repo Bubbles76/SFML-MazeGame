@@ -28,8 +28,8 @@ int main()
 	
 	//set starting cell from the grid
 
-	Cell CurrentCell = Grid[0];
-	Grid[0].VisitedCell = { true };
+	Cell CurrentCell = Grid[1];
+	Grid[1].VisitedCell = { true };
 	
 
 	//while loop to keep window open
@@ -57,8 +57,6 @@ int main()
 
 			Cell NextCell = CurrentCell;// .CheckNeigborCells(Grid);
 			 
-			
-
 			if (NextCell.VisitedCell)
 			{
 				NextCell.VisitedCell = true;

@@ -58,14 +58,10 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 
 		//print the visited cell 
 		showWindow.draw(Rect);
-		
 
 	}
 	//prints out the Grid lines to create the cells
 	showWindow.draw(lines);
-
-
-
 }
 
 Cell Cell::CheckNeigborCells(std::vector<Cell>& Grid)
