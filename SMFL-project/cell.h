@@ -9,6 +9,7 @@ public:
 	Cell CheckNeigborCells(std::vector<Cell>& Grid);
 
 	int X, Y;
+
 	
 	bool Available;
 	bool VisitedCell;
@@ -24,6 +25,7 @@ public:
 	{
 		X = x;
 		Y = y;
+		
 
 		//bool array to store visited cells false when unvisited
 		VisitedCell = { false };

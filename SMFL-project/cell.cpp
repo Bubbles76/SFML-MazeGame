@@ -16,29 +16,29 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 	{
 		// clockwise N,E,S,W 
 		//top left corner
-		lines[0].position = sf::Vector2f(i, j);
-		lines[1].position = sf::Vector2f(i + cellWidthHeight(), j);
+		lines[0].position = sf::Vector2f((float)i, (float)j);
+		lines[1].position = sf::Vector2f((float)i + cellWidthHeight(), (float)j);
 	}
 
 	if (Walls[1])
 	{
 		//top right corner
-		lines[2].position = sf::Vector2f(i + cellWidthHeight(), j);
-		lines[3].position = sf::Vector2f(i + cellWidthHeight(), j + cellWidthHeight());
+		lines[2].position = sf::Vector2f((float)i + cellWidthHeight(), (float)j);
+		lines[3].position = sf::Vector2f((float)i + cellWidthHeight(), (float)j + cellWidthHeight());
 	}
 
 	if (Walls[2])
 	{
 		//bottom right corner 
-		lines[4].position = sf::Vector2f(i + cellWidthHeight(), j + cellWidthHeight());
-		lines[5].position = sf::Vector2f(i, j + cellWidthHeight());
+		lines[4].position = sf::Vector2f((float)i + cellWidthHeight(), (float)j + cellWidthHeight());
+		lines[5].position = sf::Vector2f((float)i, (float)j + cellWidthHeight());
 	}
 
 	if (Walls[3])
 	{
 		//bottom left corner
-		lines[6].position = sf::Vector2f(i, j + cellWidthHeight());
-		lines[7].position = sf::Vector2f(i, j);
+		lines[6].position = sf::Vector2f((float)i, (float)j + cellWidthHeight());
+		lines[7].position = sf::Vector2f((float)i, (float)j);
 	}
 
 
@@ -50,11 +50,11 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 		//outline cell
 		Rect.setOutlineThickness(0);
 		//set the size of cell
-		Rect.setSize(sf::Vector2f(cellWidthHeight(), cellWidthHeight()));
+		Rect.setSize(sf::Vector2f( (float)cellWidthHeight() ,(float) cellWidthHeight() ) );
 		//set and fill the colour of the cell
 		Rect.setFillColor(sf::Color(255, 0, 255, 100));
 		//set the position of the rectangle 
-		Rect.setPosition(i,j);
+		Rect.setPosition((float)i, (float)j);
 
 		//print the visited cell 
 		showWindow.draw(Rect);
@@ -64,7 +64,7 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 	showWindow.draw(lines);
 }
 
-Cell Cell::CheckNeigborCells(std::vector<Cell>& Grid)
+Cell Cell::CheckNeigborCells(std::vector<Cell> &Grid)
 {
 	// location of neighboring cells
 	// above the main cell
@@ -100,10 +100,12 @@ Cell Cell::CheckNeigborCells(std::vector<Cell>& Grid)
 	if (Neighbors.size() > 0)
 	{
 		// create a random number to pick the neighboring cell
-		srand(time(NULL));
+		srand((unsigned)time(NULL));
 		int RandomNumber = (rand() % Neighbors.size());
+
 		//return to random neighboring cell
 		return Neighbors[RandomNumber];
 	}
+				
 }
 

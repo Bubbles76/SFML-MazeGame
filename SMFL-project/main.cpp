@@ -10,7 +10,6 @@ int main()
 	//vector array x and y 
 	std::vector<Cell> Grid;
 	
-
 	// for every row go through every column and create each cell 
 	for (int X = 0; X < rows(); X++)
 	{
@@ -26,12 +25,10 @@ int main()
 	// open a window set height() and width() "name on window" ;
 	sf::RenderWindow window(sf::VideoMode(height(), width()), "SFML");
 	
-	//set starting cell from the grid
-
-	Cell CurrentCell = Grid[1];
-	Grid[1].VisitedCell = { true };
+	//set starting cell from within the grid
+	Cell CurrentCell = Grid[0];
+	Grid[0].VisitedCell = { true };
 	
-
 	//while loop to keep window open
 	while (window.isOpen())
 	{
@@ -51,18 +48,22 @@ int main()
 		{
 			//draw out set gridded lines 
 			Grid[i].Draw(window);
-		}
+		
+
 			// set grid cell(top left) Visited cell to true to test 
 			CurrentCell.VisitedCell = { true };
 
-			Cell NextCell = CurrentCell;// .CheckNeigborCells(Grid);
-			 
-			if (NextCell.VisitedCell)
+			Cell NeighboringCell = CurrentCell.CheckNeigborCells(Grid);
+			
+			
+			if (!NeighboringCell.VisitedCell)
 			{
-				NextCell.VisitedCell = true;
-				CurrentCell = NextCell;
+				NeighboringCell.VisitedCell = true;
+				CurrentCell = NeighboringCell;
+				Grid[i].VisitedCell = { true };
 
 			}
+		}
 		
 		window.display();
 	}
