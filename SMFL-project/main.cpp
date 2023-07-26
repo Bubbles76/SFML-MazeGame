@@ -60,8 +60,6 @@ int main()
 			{
 				NeighboringCell.VisitedCell = true;
 				CurrentCell = NeighboringCell;
-				Grid[i].VisitedCell = { true };
-
 			}
 		}
 		
