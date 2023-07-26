@@ -19,12 +19,14 @@ int cellWidthHeight()
 //calculate and set column sizes
 int columns()
 {
-	return floor(width() / cellWidthHeight());
+	//Return floor( width() / cellWidthHeight() + 1);
+	return ( width() / cellWidthHeight() + 1);
 }
 // calculate and set row sizes
 int rows()
 {
-	return floor(height() / cellWidthHeight());
+	//return floor ( height() / cellWidthHeight() + 1);
+	return ( height() / cellWidthHeight() + 1);
 }
 
 //

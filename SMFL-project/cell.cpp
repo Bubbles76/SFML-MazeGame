@@ -39,7 +39,9 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 		//bottom left corner
 		lines[6].position = sf::Vector2f((float)i, (float)j + cellWidthHeight());
 		lines[7].position = sf::Vector2f((float)i, (float)j);
+
 	}
+
 
 
 	//visited cell too equal true 

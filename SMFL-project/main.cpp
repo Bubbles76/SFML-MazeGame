@@ -9,14 +9,14 @@ int main()
 {
 	//vector array x and y 
 	std::vector<Cell> Grid;
-	
+
 	// for every row go through every column and create each cell 
 	for (int X = 0; X < rows(); X++)
 	{
 		for (int Y = 0; Y < columns(); Y++)
 		{
 			// smart pointer 
-			std::unique_ptr<Cell> Cprt (new Cell(X, Y));
+			std::unique_ptr<Cell> Cprt(new Cell(X, Y));
 			// push Cell x,y on to the stack (insert elements at the end of the vector.)
 			Grid.push_back(Cell(X, Y));
 		}
@@ -24,10 +24,10 @@ int main()
 
 	// open a window set height() and width() "name on window" ;
 	sf::RenderWindow window(sf::VideoMode(height(), width()), "SFML");
-	
+
 	//set starting cell from within the grid
-	Cell CurrentCell = Grid[1];
-	Grid[1].VisitedCell = { true };
+	Cell CurrentCell = Grid[109];
+	Grid[109].VisitedCell = { true };
 	
 	//while loop to keep window open
 	while (window.isOpen())
