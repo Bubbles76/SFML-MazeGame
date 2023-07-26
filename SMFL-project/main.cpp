@@ -26,8 +26,8 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(height(), width()), "SFML");
 	
 	//set starting cell from within the grid
-	Cell CurrentCell = Grid[0];
-	Grid[0].VisitedCell = { true };
+	Cell CurrentCell = Grid[1];
+	Grid[1].VisitedCell = { true };
 	
 	//while loop to keep window open
 	while (window.isOpen())
@@ -48,20 +48,20 @@ int main()
 		{
 			//draw out set gridded lines 
 			Grid[i].Draw(window);
-		
+		}
 
 			// set grid cell(top left) Visited cell to true to test 
 			CurrentCell.VisitedCell = { true };
-
+		
 			Cell NeighboringCell = CurrentCell.CheckNeigborCells(Grid);
-			
-			
+
 			if (!NeighboringCell.VisitedCell)
 			{
 				NeighboringCell.VisitedCell = true;
+				
 				CurrentCell = NeighboringCell;
 			}
-		}
+		
 		
 		window.display();
 	}

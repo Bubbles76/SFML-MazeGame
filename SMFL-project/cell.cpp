@@ -101,7 +101,7 @@ Cell Cell::CheckNeigborCells(std::vector<Cell> &Grid)
 	{
 		// create a random number to pick the neighboring cell
 		srand((unsigned)time(NULL));
-		int RandomNumber = (rand() % Neighbors.size());
+		int RandomNumber = (0 + rand() % Neighbors.size());
 
 		//return to random neighboring cell
 		return Neighbors[RandomNumber];
