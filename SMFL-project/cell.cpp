@@ -16,6 +16,7 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 	{
 		// clockwise N,E,S,W 
 		//top left corner
+		// convert int i and j to floats 
 		lines[0].position = sf::Vector2f((float)i, (float)j);
 		lines[1].position = sf::Vector2f((float)i + cellWidthHeight(), (float)j);
 	}
@@ -66,7 +67,7 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 	showWindow.draw(lines);
 }
 
-Cell Cell::CheckNeigborCells(std::vector<Cell> &Grid)
+Cell Cell::CheckNeigborCells(std::vector<Cell>& Grid)
 {
 	// location of neighboring cells
 	// above the main cell
@@ -97,7 +98,7 @@ Cell Cell::CheckNeigborCells(std::vector<Cell> &Grid)
 		Neighbors.push_back(LeftCell);
 	}
 
-	
+
 	//neighbors array size being more then 0
 	if (Neighbors.size() > 0)
 	{
@@ -106,8 +107,8 @@ Cell Cell::CheckNeigborCells(std::vector<Cell> &Grid)
 		int RandomNumber = (0 + rand() % Neighbors.size());
 
 		//return to random neighboring cell
+
 		return Neighbors[RandomNumber];
 	}
-				
 }
 

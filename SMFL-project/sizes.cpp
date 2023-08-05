@@ -19,14 +19,15 @@ int cellWidthHeight()
 //calculate and set column sizes
 int columns()
 {
-	//Return floor( width() / cellWidthHeight() + 1);
-	return ( width() / cellWidthHeight() + 1);
+	//return floor( width() / cellWidthHeight() + 1);
+	// +1 to finished the grid drawn 
+	return ( width() / cellWidthHeight() +1);
 }
 // calculate and set row sizes
 int rows()
 {
 	//return floor ( height() / cellWidthHeight() + 1);
-	return ( height() / cellWidthHeight() + 1);
+	return ( height() / cellWidthHeight() +1);
 }
 
 //

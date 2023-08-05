@@ -26,8 +26,9 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(height(), width()), "SFML");
 
 	//set starting cell from within the grid
-	Cell CurrentCell = Grid[109];
-	Grid[109].VisitedCell = { true };
+	// grid 0 won't draw why????
+	Cell CurrentCell = Grid[0];//109
+	Grid[1].VisitedCell = { true };
 	
 	//while loop to keep window open
 	while (window.isOpen())
