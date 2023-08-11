@@ -15,7 +15,7 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 	if (Walls[0])
 	{
 		// clockwise N,E,S,W 
-		//top left corner           // convert int i and j to floats 
+		//top left corner   // convert int i and j to floats 
 		lines[0].position = sf::Vector2f((float)i, (float)j);
 		lines[1].position = sf::Vector2f((float)i + cellWidthHeight(), (float)j);
 	}
@@ -116,4 +116,3 @@ Cell Cell::CheckNeigborCells(std::vector<Cell>& Grid)
 		return Neighbors[RandomNumber];
 	}
 }
-

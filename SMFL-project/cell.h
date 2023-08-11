@@ -32,9 +32,3 @@ public:
 		Available = { true };
 	}
 };
-
-
-
-
-
-

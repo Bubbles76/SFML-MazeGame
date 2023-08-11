@@ -11,4 +11,3 @@ int columns();
 int rows();
 
 int index(int x, int y);
-
