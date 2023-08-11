@@ -42,8 +42,6 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 
 	}
 
-
-
 	//visited cell too equal true 
 	if (VisitedCell)
 	{
@@ -60,11 +58,30 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 
 		//print the visited cell 
 		showWindow.draw(Rect);
-
 	}
+
+
+	
 	//prints out the Grid lines to create the cells
 	showWindow.draw(lines);
 }
+void Cell::CellVistedColour(sf::RenderWindow& showWindow)
+{
+		// SFML function class  to  (position, rotation, scale, outline, colour, texture)
+		sf::RectangleShape Rect;
+		//outline cell
+		Rect.setOutlineThickness(0);
+		//set the size of cell
+		Rect.setSize(sf::Vector2f((float)cellWidthHeight(), (float)cellWidthHeight()));
+		//set and fill the colour of the cell
+		Rect.setFillColor(sf::Color(255, 0, 255, 100));
+		//set the position of the rectangle 
+		Rect.setPosition((float)i, (float)j);
+
+		//print the visited cell 
+	showWindow.draw(Rect); 
+}
+
 
 Cell Cell::CheckNeigborCells(std::vector<Cell> &Grid)
 {
@@ -108,6 +125,5 @@ Cell Cell::CheckNeigborCells(std::vector<Cell> &Grid)
 		//return to random neighboring cell
 		return Neighbors[RandomNumber];
 	}
-				
 }
 

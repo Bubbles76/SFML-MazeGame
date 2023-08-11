@@ -26,9 +26,10 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(height(), width()), "SFML");
 
 	//set starting cell from within the grid
-	Cell CurrentCell = Grid[109];
-	Grid[109].VisitedCell = { true };
-	
+	Cell CurrentCell = Grid[16];
+	//set start to true to show visited
+	Grid[16].VisitedCell = { true };
+		
 	//while loop to keep window open
 	while (window.isOpen())
 	{
@@ -41,37 +42,32 @@ int main()
 				window.close();
 			}
 		}
-
 		window.clear();
-
 		for (int i = 0; i < Grid.size(); i++)
 		{
 			//draw out set gridded lines 
 			Grid[i].Draw(window);
 		}
-
-			// set grid cell(top left) Visited cell to true to test 
-			CurrentCell.VisitedCell = { true };
 		
-			Cell NeighboringCell = CurrentCell.CheckNeigborCells(Grid);
-
-			if (!NeighboringCell.VisitedCell)
-			{
-				NeighboringCell.VisitedCell = true;
-				
-				CurrentCell = NeighboringCell;
-			}
 		
+		// set grid cell(top left) Visited cell to true to test 
+		CurrentCell.VisitedCell = { true };
+		
+
+		Cell NeighboringCell = CurrentCell.CheckNeigborCells(Grid);
+			
+		//to colour next cell
+		CurrentCell.CellVistedColour(window);
+
+		if (!NeighboringCell.VisitedCell)
+		{
+			NeighboringCell.VisitedCell = true;
+
+			CurrentCell = NeighboringCell;
+			
+		}
 		
 		window.display();
 	}
-
 	return 0;
 }
-
-
-
-
-
-
-

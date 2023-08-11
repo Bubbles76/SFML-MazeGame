@@ -7,6 +7,7 @@ public:
 
 	void Draw(sf::RenderWindow& showWindow);
 	Cell CheckNeigborCells(std::vector<Cell>& Grid);
+	void CellVistedColour(sf::RenderWindow& showWindow);
 
 	int X, Y;
 
@@ -15,7 +16,7 @@ public:
 	bool VisitedCell;
 	int i = this->X * cellWidthHeight();
 	int j = this->Y * cellWidthHeight();
-
+	
 
 	//array
 	std::vector<bool> Walls;
@@ -28,7 +29,7 @@ public:
 		
 
 		//bool array to store visited cells false when unvisited
-		VisitedCell = { false };
+		VisitedCell = { false};
 
 		// bool array top,right,bottom,left, N,E,S,W True to draw gridded lines false to remove them 
 		Walls = { true,true,true,true };
