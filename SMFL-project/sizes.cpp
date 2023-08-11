@@ -29,20 +29,17 @@ int rows()
 	//return floor ( height() / cellWidthHeight() + 1);
 	return ( height() / cellWidthHeight() +1);
 }
-
-//
 int index(int x, int y)
 {
 	x;// rows
 	y;// columns
 
-	//(x has to be between 0 and columns -1)
-	//(y has to be between 0 and rows -1) 
-
-	// all the option are invalid 	
+	//(x has to be between 0 and columns -1) //(y has to be between 0 and rows -1) 	
 	if (x < 0 || y < 0 || x > columns() - 1 || y > rows() - 1)
 	{
+		// all the option are invalid so returns false
 		return 1;
 	}
+
 	return x + y *columns();
 }

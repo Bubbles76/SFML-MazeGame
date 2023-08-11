@@ -15,59 +15,32 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 	if (Walls[0])
 	{
 		// clockwise N,E,S,W 
-		//top left corner
-		// convert int i and j to floats 
+		//top left corner           // convert int i and j to floats 
 		lines[0].position = sf::Vector2f((float)i, (float)j);
 		lines[1].position = sf::Vector2f((float)i + cellWidthHeight(), (float)j);
 	}
-
 	if (Walls[1])
 	{
 		//top right corner
 		lines[2].position = sf::Vector2f((float)i + cellWidthHeight(), (float)j);
 		lines[3].position = sf::Vector2f((float)i + cellWidthHeight(), (float)j + cellWidthHeight());
 	}
-
 	if (Walls[2])
 	{
 		//bottom right corner 
 		lines[4].position = sf::Vector2f((float)i + cellWidthHeight(), (float)j + cellWidthHeight());
 		lines[5].position = sf::Vector2f((float)i, (float)j + cellWidthHeight());
 	}
-
 	if (Walls[3])
 	{
 		//bottom left corner
 		lines[6].position = sf::Vector2f((float)i, (float)j + cellWidthHeight());
 		lines[7].position = sf::Vector2f((float)i, (float)j);
-
 	}
 
 	//visited cell too equal true 
 	if (VisitedCell)
 	{
-		// SFML function class  to  (position, rotation, scale, outline, colour, texture)
-		sf::RectangleShape Rect;
-		//outline cell
-		Rect.setOutlineThickness(0);
-		//set the size of cell
-		Rect.setSize(sf::Vector2f( (float)cellWidthHeight() ,(float) cellWidthHeight() ) );
-		//set and fill the colour of the cell
-		Rect.setFillColor(sf::Color(255, 0, 255, 100));
-		//set the position of the rectangle 
-		Rect.setPosition((float)i, (float)j);
-
-		//print the visited cell 
-		showWindow.draw(Rect);
-	}
-
-
-	
-	//prints out the Grid lines to create the cells
-	showWindow.draw(lines);
-}
-void Cell::CellVistedColour(sf::RenderWindow& showWindow)
-{
 		// SFML function class  to  (position, rotation, scale, outline, colour, texture)
 		sf::RectangleShape Rect;
 		//outline cell
@@ -80,10 +53,27 @@ void Cell::CellVistedColour(sf::RenderWindow& showWindow)
 		Rect.setPosition((float)i, (float)j);
 
 		//print the visited cell 
-	showWindow.draw(Rect); 
+		showWindow.draw(Rect);
+	}
+	//prints out the Grid lines to create the cells
+	showWindow.draw(lines);
 }
+void Cell::CellVistedColour(sf::RenderWindow& showWindow)
+{
+	// SFML function class  to  (position, rotation, scale, outline, colour, texture)
+	sf::RectangleShape Rect;
+	//outline cell
+	Rect.setOutlineThickness(0);
+	//set the size of cell
+	Rect.setSize(sf::Vector2f((float)cellWidthHeight(), (float)cellWidthHeight()));
+	//set and fill the colour of the cell
+	Rect.setFillColor(sf::Color(255, 0, 255, 100));
+	//set the position of the rectangle 
+	Rect.setPosition((float)i, (float)j);
 
-
+	//print the visited cell 
+	showWindow.draw(Rect);
+}
 Cell Cell::CheckNeigborCells(std::vector<Cell>& Grid)
 {
 	// location of neighboring cells
@@ -115,7 +105,6 @@ Cell Cell::CheckNeigborCells(std::vector<Cell>& Grid)
 		Neighbors.push_back(LeftCell);
 	}
 
-
 	//neighbors array size being more then 0
 	if (Neighbors.size() > 0)
 	{
@@ -124,7 +113,6 @@ Cell Cell::CheckNeigborCells(std::vector<Cell>& Grid)
 		int RandomNumber = (0 + rand() % Neighbors.size());
 
 		//return to random neighboring cell
-
 		return Neighbors[RandomNumber];
 	}
 }

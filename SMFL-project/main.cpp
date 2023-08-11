@@ -42,29 +42,28 @@ int main()
 				window.close();
 			}
 		}
+
 		window.clear();
+
 		for (int i = 0; i < Grid.size(); i++)
 		{
 			//draw out set gridded lines 
 			Grid[i].Draw(window);
 		}
 		
-		
 		// set grid cell(top left) Visited cell to true to test 
 		CurrentCell.VisitedCell = { true };
-		
 
 		Cell NeighboringCell = CurrentCell.CheckNeigborCells(Grid);
-			
-		//to colour next cell
+		// colour the next cell
 		CurrentCell.CellVistedColour(window);
-
+		//
 		if (!NeighboringCell.VisitedCell)
 		{
+			// 
 			NeighboringCell.VisitedCell = true;
-
+			//
 			CurrentCell = NeighboringCell;
-			
 		}
 		
 		window.display();
