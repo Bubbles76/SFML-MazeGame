@@ -10,10 +10,9 @@ public:
 
 	int X, Y;
 
-	bool Available;
-	bool VisitedCell;
-	int i = this->X * cellWidthHeight();
-	int j = this->Y * cellWidthHeight();
+	bool Available = false;
+	bool VisitedCell = false;
+	int  size = 40;
 	
 	//array
 	std::vector<bool> Walls;

@@ -4,7 +4,7 @@ int width();
 
 int height();
 
-int cellWidthHeight();
+int cellSize();
 
 int columns();
 
