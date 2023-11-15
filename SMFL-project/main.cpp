@@ -26,9 +26,9 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(height(), width()), "SFML Maze");
 
 	//set starting cell from within the grid
-	Cell CurrentCell = Grid[10];
+	Cell CurrentCell = Grid[20];
 	//set start to true to show visited
-	Grid[10].VisitedCell = { true };
+	Grid[20].VisitedCell = { true };
 		
 	//while loop to keep window open
 	while (window.isOpen())

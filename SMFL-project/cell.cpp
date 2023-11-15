@@ -11,6 +11,9 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 {
 	sf::VertexArray lines(sf::Lines, 8);
 
+	// SFML function class  to  (position, rotation, scale, outline, colour, texture)
+	sf::RectangleShape Rect;
+
 	// boolean array 
 	if (Walls[0])
 	{
@@ -41,8 +44,6 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 	//visited cell too equal true 
 	if (VisitedCell)
 	{
-		// SFML function class  to  (position, rotation, scale, outline, colour, texture)
-		sf::RectangleShape Rect;
 		//outline cell
 		Rect.setOutlineThickness(0);
 		//set the size of cell
@@ -51,46 +52,27 @@ void Cell::Draw(sf::RenderWindow& showWindow)
 		Rect.setFillColor(sf::Color(255, 0, 255, 100));
 		//set the position of the rectangle 
 		Rect.setPosition((float)i, (float)j);
-
-		//print the visited cell 
-		showWindow.draw(Rect);
 	}
-	//prints out the Grid lines to create the cells
-	showWindow.draw(lines);
-}
-void Cell::CellVistedColour(sf::RenderWindow& showWindow)
-{
-	// SFML function class  to  (position, rotation, scale, outline, colour, texture)
-	sf::RectangleShape Rect;
-	//outline cell
-	Rect.setOutlineThickness(0);
-	//set the size of cell
-	Rect.setSize(sf::Vector2f((float)cellWidthHeight(), (float)cellWidthHeight()));
-	//set and fill the colour of the cell
-	Rect.setFillColor(sf::Color(255, 0, 255, 100));
-	//set the position of the rectangle 
-	Rect.setPosition((float)i, (float)j);
 
 	//print the visited cell 
 	showWindow.draw(Rect);
+	//prints out the Grid lines to create the cells
+	showWindow.draw(lines);
 }
+
+
 Cell Cell::CheckNeigborCells(std::vector<Cell>& Grid)
 {
 	// location of neighboring cells
-	// above the main cell
-	Cell TopCell = Grid[index(i, j - 1)];
-	// right side of the main cell
-	Cell RightCell = Grid[index(i + 1, j)];
-	// below of the main cell
-	Cell BottomCell = Grid[index(i, j + 1)];
-	//left side of the main cell
-	Cell LeftCell = Grid[index(i - 1, j)];
+	Cell TopCell    = Grid[index(i    , j - 1)];// above the main cell
+	Cell RightCell  = Grid[index(i + 1, j    )];// right side of the main cell
+	Cell BottomCell = Grid[index(i    , j + 1)];// below of the main cell
+	Cell LeftCell   = Grid[index(i - 1, j    )];//left side of the main cell
 
 	// check that the cell location exists and if the cell has NOT been visited
 	if (TopCell.Available && !TopCell.VisitedCell)
 	{
-		// add cell to the neighbors array
-		Neighbors.push_back(TopCell);
+		Neighbors.push_back(TopCell);// add cell to the neighbors array
 	}
 	if (RightCell.Available && !RightCell.VisitedCell)
 	{
@@ -114,5 +96,24 @@ Cell Cell::CheckNeigborCells(std::vector<Cell>& Grid)
 
 		//return to random neighboring cell
 		return Neighbors[RandomNumber];
+
 	}
+
+}
+
+void Cell::CellVistedColour(sf::RenderWindow& showWindow)
+{
+	// SFML function class  to  (position, rotation, scale, outline, colour, texture)
+	sf::RectangleShape Rect;
+	//outline cell
+	Rect.setOutlineThickness(0);
+	//set the size of cell
+	Rect.setSize(sf::Vector2f((float)cellWidthHeight(), (float)cellWidthHeight()));
+	//set and fill the colour of the cell
+	Rect.setFillColor(sf::Color(255, 0, 255, 100));
+	//set the position of the rectangle 
+	Rect.setPosition((float)i, (float)j);
+
+	//print the visited cell 
+	showWindow.draw(Rect);
 }
